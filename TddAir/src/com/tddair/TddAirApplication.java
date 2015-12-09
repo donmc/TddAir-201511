@@ -13,7 +13,7 @@ public class TddAirApplication {
 	
 	public void registerMember(String name) {
 		if (name == null) throw new IllegalArgumentException("Member name cant be null!");
-		if (lookupMember(name) != null) throw new DuplicateMemberException("No Dupes!");
+		if (members.containsKey(name)) throw new DuplicateMemberException("No Dupes!");
 		
 		Member newMember = new Member(name);
 		newMember.setBalanceMiles(10000);

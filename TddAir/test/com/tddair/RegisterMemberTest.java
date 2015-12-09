@@ -9,9 +9,11 @@ import org.junit.Test;
 public class RegisterMemberTest {
 	private TddAirApplication app;
 	private String name;
+	private String nullName;
 	@Before
 	public void setup(){
 		app = new TddAirApplication();
+		nullName = null;
 	}
 	
 	
@@ -26,7 +28,7 @@ public class RegisterMemberTest {
 	@Test
 	public void registerMemberNull(){
 		try {
-			app.registerMember(null);
+			app.registerMember(nullName);
 			fail("Needs to throw IllegalArgumentException");
 		}
 		catch (IllegalArgumentException iae) {

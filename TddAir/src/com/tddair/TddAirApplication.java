@@ -20,5 +20,9 @@ public class TddAirApplication {
   public int getMemberCurrentBalance(String username) {
 	  return memberList.get(username).getBalance();
   }
-
+  
+  public int getMemberYtdMiles(String username) {
+	  return memberList.get(username).getYtdMiles();
+  }
+ 
 }

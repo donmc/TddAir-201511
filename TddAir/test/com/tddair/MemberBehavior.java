@@ -24,5 +24,11 @@ public class MemberBehavior {
 		member = new Member("bonusMilesBehavior");
 		assertEquals(10000, member.getBalance());
 	}
+	
+//	@Test
+//	public void memberShouldHaveBonusMiles() {
+//		member = new Member("bonusMilesBehavior");
+//		assertEquals(0, member.getBalance());
+//	}
 
 }

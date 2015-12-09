@@ -5,11 +5,13 @@ public class Member {
 	private String username;
 	private String status;
 	private int balance;
+	private int ytdMiles;
 
 	public Member(String username) {
 		this.username = username;
 		this.status = "RED";
 		this.balance = 10000;
+		this.ytdMiles = 0;
 	}
 
 	public String getUsername() {
@@ -22,5 +24,9 @@ public class Member {
 
 	public int getBalance() {
 		return balance;
+	}
+	
+	public int getYtdMiles() {
+		return ytdMiles;
 	}
 }

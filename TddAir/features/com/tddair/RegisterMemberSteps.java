@@ -29,19 +29,19 @@ public class RegisterMemberSteps {
 		assertEquals("donmc", foundMember.getUsername());
 	}
 
-	@Then("^new member should have \"([^\"]*)\" status$")
-	public void new_member_should_have_status(String status) throws Throwable {
+	@Then("^that member should have \"([^\"]*)\" status$")
+	public void that_member_should_have_status(String status) throws Throwable {
 		assertEquals(status.toLowerCase(), foundMember.getStatus().toString().toLowerCase());
 	}
 
-	@Then("^new member should have \"(\\d+)\" balance miles$")
-	public void new_member_should_have_balance_miles(int balanceMiles)
+	@Then("^that member should have \"(\\d+)\" balance miles$")
+	public void that_member_should_have_balance_miles(int balanceMiles)
 			throws Throwable {
 		assertEquals(balanceMiles, foundMember.getBalanceMiles());
 	}
 
-	@Then("^new member should have \"(\\d+)\" ytd miles$")
-	public void new_member_should_have_ytd_miles(int ytdMiles) throws Throwable {
+	@Then("^that member should have \"(\\d+)\" ytd miles$")
+	public void that_member_should_have_ytd_miles(int ytdMiles) throws Throwable {
 		assertEquals(ytdMiles, foundMember.getYTDMiles());
 	}
 	

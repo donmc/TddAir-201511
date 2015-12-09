@@ -9,4 +9,9 @@ Scenario: Save New Members
 	And new member should have "RED" status
 	And new member should have "10000" balance miles
 	And new member should have "0" ytd miles
+
+Scenario: Duplicate Usernames
+	When registering a new member with username "stevenb"
+	And registering a new member with username "stevenb"
+	Then should show error message "Member With Username Already Exists"
  

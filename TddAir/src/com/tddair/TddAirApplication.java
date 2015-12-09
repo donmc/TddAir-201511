@@ -13,14 +13,15 @@ public class TddAirApplication {
 	}
 
 	public void registerMember(String username) {
+		if(members.containsKey(username)) throw new MemberException("Member With Username Already Exists");
 		Member newMember = new Member(username);
 		members.put(username, newMember);
 	}
 
-	public Member lookUpMember(String username) throws MemberNotFoundException {
+	public Member lookUpMember(String username) throws MemberException {
 		Member member = members.get(username);
 		if (member == null) {
-			throw new MemberNotFoundException("Member Not Found");
+			throw new MemberException("Member Not Found");
 		}
 		
 		return member;

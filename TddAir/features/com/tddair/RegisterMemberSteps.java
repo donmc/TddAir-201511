@@ -10,12 +10,17 @@ public class RegisterMemberSteps {
 	
 	private TddAirApplication tddApp = new TddAirApplication();
 	private Member member;
+	private Exception e;
 
 	@When("^registering a new member with username \"([a-zA-Z0-9]+)\"$")
 	public void registering_a_new_member_with_username(String username) throws Throwable {
-		tddApp.registerMember(username);
-		member = tddApp.lookUpMember(username);
-		assertNotNull(member);
+		try {
+			tddApp.registerMember(username);
+			member = tddApp.lookUpMember(username);
+			assertNotNull(member);
+		} catch (Exception e) {
+			this.e = e;
+		}
 	}
 
 	@Then("^lookup should find a member with username \"([a-zA-Z0-9]+)\"$")
@@ -37,6 +42,11 @@ public class RegisterMemberSteps {
 	@Then("^new member should have \"(\\d+)\" ytd miles$")
 	public void new_member_should_have_ytd_miles(Long memberYTD) throws Throwable {
 		assertEquals(memberYTD, member.getYTDMiles());
+	}
+	
+	@Then("^should show error message \"([^\"]*)\"$")
+	public void should_show_error_message(String error) throws Throwable {
+		assertEquals(error, e.getMessage());
 	}
 	
 }

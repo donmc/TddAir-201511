@@ -32,11 +32,22 @@ public class RegisterMemberBehavior {
 	}
 	
 	@Test
+	public void shouldNotAllowDuplicateUsername(){
+		try {
+			tddApp.registerMember("sarahmk");
+			fail();
+		} catch (MemberException e) {
+			assertEquals("Member With Username Already Exists", e.getMessage());
+		}
+		
+	}
+	
+	@Test
 	public void shouldNotFindMemberNotRegistered() {
 		try {
 			tddApp.lookUpMember("bob");
 			fail();
-		} catch (MemberNotFoundException e) {
+		} catch (MemberException e) {
 			assertEquals("Member Not Found", e.getMessage());
 		}
 	}

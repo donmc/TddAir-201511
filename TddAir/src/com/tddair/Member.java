@@ -2,15 +2,16 @@ package com.tddair;
 
 public class Member {
 	
+	private static final int BONUS_MILES = 10000;
 	private String username;
-	private String status;
+	private Status status;
 	private int balance;
 	private int ytdMiles;
 
 	public Member(String username) {
 		this.username = username;
-		this.status = "RED";
-		this.balance = 10000;
+		this.status = Status.RED;
+		this.balance = BONUS_MILES;
 		this.ytdMiles = 0;
 	}
 
@@ -18,7 +19,7 @@ public class Member {
 		return username;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 

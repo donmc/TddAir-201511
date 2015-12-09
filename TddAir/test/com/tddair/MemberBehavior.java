@@ -16,7 +16,7 @@ public class MemberBehavior {
 	@Test
 	public void memberShouldHaveRedStatus() {
 		member = new Member("redStatusBehavior");
-		assertEquals("RED", member.getStatus());
+		assertEquals(Status.RED, member.getStatus());
 	}
 	
 	@Test

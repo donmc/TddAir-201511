@@ -6,6 +6,7 @@ public class TddAirApplication {
   private HashMap<String, Member> memberList = new HashMap<String, Member>();
   
   public void registerMember(String username) {
+	  if(memberList.containsKey(username)) throw new IllegalArgumentException();
 	  memberList.put(username, new Member(username));
   }
   

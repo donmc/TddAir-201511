@@ -1,6 +1,7 @@
 package com.tddair;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -8,41 +9,34 @@ import cucumber.api.java.en.When;
 public class RegisterMemberSteps {
 	
 	private TddAirApplication tddApp = new TddAirApplication();
+	private Member member;
 
 	@When("^registering a new member with username \"([a-zA-Z0-9]+)\"$")
-	public void registering_a_new_member_with_username(String arg1) throws Throwable {
-		tddApp.registerMember("sarahmk");
+	public void registering_a_new_member_with_username(String username) throws Throwable {
+		tddApp.registerMember(username);
+		member = tddApp.lookUpMember(username);
+		assertNotNull(member);
 	}
 
 	@Then("^lookup should find a member with username \"([a-zA-Z0-9]+)\"$")
-	public void lookup_should_find_a_member_with_username(String arg1) throws Throwable {
-		tddApp.registerMember("sarahmk");
-		Member memberSarah = tddApp.lookUpMember("sarahmk");
-		assertEquals("sarahmk", memberSarah.getUsername());
+	public void lookup_should_find_a_member_with_username(String username) throws Throwable {
+		member = tddApp.lookUpMember(username);
+		assertEquals(username, member.getUsername());
 	}
 
 	@Then("^new member should have \"([A-Z]+)\" status$")
-	public void new_member_should_have_status(String arg1) throws Throwable {
-		tddApp.registerMember("sarahmk");
-		Member memberSarah = tddApp.lookUpMember("sarahmk");
-		MemberStatus status = memberSarah.getStatus();
-		assertEquals(MemberStatus.RED, status);
+	public void new_member_should_have_status(String memberStatus) throws Throwable {
+		assertEquals(memberStatus, member.getStatus().toString());
 	}
 
 	@Then("^new member should have \"(\\d+)\" balance miles$")
-	public void new_member_should_have_balance_miles(String arg1) throws Throwable {
-		tddApp.registerMember("sarahmk");
-		Member memberSarah = tddApp.lookUpMember("sarahmk");
-		Long balance = memberSarah.getBalance();
-		assertEquals(Long.valueOf(10000), balance);
+	public void new_member_should_have_balance_miles(Long memberBalance) throws Throwable {
+		assertEquals(memberBalance, member.getBalance());
 	}
 
 	@Then("^new member should have \"(\\d+)\" ytd miles$")
-	public void new_member_should_have_ytd_miles(String arg1) throws Throwable {
-		tddApp.registerMember("sarahmk");
-		Member memberSarah = tddApp.lookUpMember("sarahmk");
-		Long ytd = memberSarah.getYTDMiles();
-		assertEquals(Long.valueOf(0), ytd);
+	public void new_member_should_have_ytd_miles(Long memberYTD) throws Throwable {
+		assertEquals(memberYTD, member.getYTDMiles());
 	}
 	
 }

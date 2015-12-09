@@ -1,11 +1,12 @@
 package com.tddair;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class TddAirApplication {
 
-	private List<Member> members = new ArrayList<Member>();
+	private Map<String, Member> members = new HashMap<String, Member>();
 
 	public TddAirApplication() {
 		
@@ -13,17 +14,11 @@ public class TddAirApplication {
 
 	public void registerMember(String username) {
 		Member newMember = new Member(username);
-		members.add(newMember);
+		members.put(username, newMember);
 	}
 
 	public Member lookUpMember(String username) throws MemberNotFoundException {
-		Member member = null;
-		for(Member x : members){
-			if(x.getUsername().equals(username)){
-				member = x;
-			}
-		}
-		
+		Member member = members.get(username);
 		if (member == null) {
 			throw new MemberNotFoundException("Member Not Found");
 		}

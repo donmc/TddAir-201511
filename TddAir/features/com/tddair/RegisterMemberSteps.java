@@ -9,18 +9,23 @@ public class RegisterMemberSteps {
 	
 	private TddAirApplication tddApp = new TddAirApplication();
 	private Member foundMember = null;
+	private String errorMessage = null;
 
 	@When("^registering a new member with username \"(.+)\"$")
 	public void registering_a_new_member_with_username(String username)
 			throws Throwable {
+		try{
 		tddApp.registerMember(username);
-		
+		}catch (DuplicateMemberException dme) {
+			errorMessage = dme.getMessage();
+		}
+		foundMember = tddApp.lookupMember(username);
 	}
 
 	@Then("^should find a member with username \"([^\"]*)\"$")
 	public void should_find_a_member_with_username(String username)
 			throws Throwable {
-		foundMember = tddApp.lookupMember(username);
+		
 		assertEquals("donmc", foundMember.getUsername());
 	}
 
@@ -41,8 +46,8 @@ public class RegisterMemberSteps {
 	}
 	
 	@Then("^should show error message \"([^\"]*)\"$")
-	public void should_show_error_message(String arg1) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void should_show_error_message(String message) throws Throwable {
+	  
+		assertEquals(message, errorMessage);
 	}
 }

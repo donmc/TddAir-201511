@@ -62,8 +62,22 @@ public class RegisterMemberTest {
 	public void memberLookupNotFound(){
 		name = "donmc";
 		Member mbr = app.lookupMember(name);
-		assertEquals(null, mbr);
+		assertEquals(null, mbr);	
+	}
+	
+	@Test
+	public void shouldNotAllowDuplicates() {
+		name = "donmc";
 		
+		app.registerMember(name);
+		
+		try {
+			app.registerMember(name);
+			fail("Did not catch duplicate member!");
+		}
+		catch (DuplicateMemberException dme) {
+			assertEquals("No Dupes!", dme.getMessage());
+		}
 	}
 	
 }

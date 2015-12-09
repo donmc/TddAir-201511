@@ -10,3 +10,7 @@ Scenario: Save New Memebrs
 	And new member should have "10000" balance miles
 	And new member should have "0" ytd miles
 	
+Scenario: Duplicate UserNames
+	When registering a new member with username "donmc"
+	And registering a new member with username "donmc"
+	Then should show error message "No Dupes!"

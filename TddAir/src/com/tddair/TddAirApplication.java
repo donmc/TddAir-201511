@@ -1,10 +1,11 @@
 package com.tddair;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class TddAirApplication {
 
-	HashMap <String, Member> members = null;
+	Map<String, Member> members = null;
 	
 	public TddAirApplication() {
 		members = new HashMap<String, Member>();
@@ -12,6 +13,7 @@ public class TddAirApplication {
 	
 	public void registerMember(String name) {
 		if (name == null) throw new IllegalArgumentException("Member name cant be null!");
+		if (lookupMember(name) != null) throw new DuplicateMemberException("No Dupes!");
 		
 		Member newMember = new Member(name);
 		newMember.setBalanceMiles(10000);

@@ -9,11 +9,16 @@ public class RegisterMemberSteps {
 	
 	private TddAirApplication tddapp = new TddAirApplication();
 	private Member member;
+	private String errorMessage;
 	
 	@When("^registering a new member with username \"(.+)\"$")
 	public void registering_a_new_member_with_username(String username) throws Throwable {
-	    tddapp.registerMember(username);
-	    member = tddapp.lookupMember(username);
+    	try {
+			tddapp.registerMember(username);
+			member = tddapp.lookupMember(username);
+		} catch (IllegalArgumentException e) {
+			this.errorMessage = e.getMessage();
+		}
 	}
 
 	@Then("^should find a member with username \"([^\"]*)\"$")
@@ -36,10 +41,9 @@ public class RegisterMemberSteps {
 		Assert.assertEquals(ytdMiles, member.getYtdMiles());
 	}
 	
-	@Then("^should show error message$")
-	public void should_show_error_message() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	@Then("^should show error message \"([^\"]*)\"$")
+	public void should_show_error_message(String errorMessage) throws Throwable {
+	    Assert.assertEquals(errorMessage, this.errorMessage);
 	}
 
 }

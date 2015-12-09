@@ -13,4 +13,4 @@ Scenario: Save New Members
 Scenario: Duplicate Usernames
 	When registering a new member with username "donmc"
 	And registering a new member with username "donmc"
-	Then should show error message
+	Then should show error message "No Dupes!"

@@ -26,7 +26,7 @@ public class MemberBehavior {
 	}
 	
 	@Test
-	public void memberShouldHaveYtdMiles() {
+	public void memberShouldHaveNoYtdMiles() {
 		member = new Member("ytdMilesBehavior");
 		assertEquals(0, member.getYtdMiles());
 	}

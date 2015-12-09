@@ -25,10 +25,10 @@ public class MemberBehavior {
 		assertEquals(10000, member.getBalance());
 	}
 	
-//	@Test
-//	public void memberShouldHaveBonusMiles() {
-//		member = new Member("bonusMilesBehavior");
-//		assertEquals(0, member.getBalance());
-//	}
+	@Test
+	public void memberShouldHaveYtdMiles() {
+		member = new Member("ytdMilesBehavior");
+		assertEquals(0, member.getYtdMiles());
+	}
 
 }

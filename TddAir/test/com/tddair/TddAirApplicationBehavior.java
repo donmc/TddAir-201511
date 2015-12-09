@@ -21,8 +21,13 @@ public class TddAirApplicationBehavior {
 	
 	@Test
 	public void memberShouldHaveBonusMiles() {
-		tddAirTestObject.registerMember("redStatusBehavior");
-		assertEquals(10000, tddAirTestObject.getMemberCurrentBalance());
+		tddAirTestObject.registerMember("bonusMilesBehavior");
+		assertEquals(10000, tddAirTestObject.getMemberCurrentBalance("bonusMilesBehavior"));
+	}
+	
+	@Test void memberShouldHaveNoYtdMiles() {
+		tddAirTestObject.registerMember("ytdMilesBehavior");
+		assertEquals(0, tddAirTestObject.getMemberYtdMiles());
 	}
 
 }

@@ -16,5 +16,9 @@ public class TddAirApplication {
   public String getMemberStatus(String username) {
 	  return memberList.get(username).getStatus();
   }
+  
+  public int getMemberCurrentBalance(String username) {
+	  return memberList.get(username).getBalance();
+  }
 
 }

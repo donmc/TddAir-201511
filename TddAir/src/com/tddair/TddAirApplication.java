@@ -9,11 +9,12 @@ public class TddAirApplication {
 	  memberList.put(username, new Member(username));
   }
   
-  public String lookupMember(String username) {
-	  return memberList.get(username).getUsername();
+  public Member lookupMember(String username) {
+	  if (!memberList.containsKey(username)) throw new IllegalArgumentException();
+	  return memberList.get(username);
   }
   
-  public String getMemberStatus(String username) {
+  public Status getMemberStatus(String username) {
 	  return memberList.get(username).getStatus();
   }
   

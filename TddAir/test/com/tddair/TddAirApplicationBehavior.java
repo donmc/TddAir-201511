@@ -10,13 +10,14 @@ public class TddAirApplicationBehavior {
 	@Test
 	public void memberShouldBeRegistered() {
 		tddAirTestObject.registerMember("myUsername");
-		assertEquals("myUsername", tddAirTestObject.lookupMember("myUsername"));
+		Member member = tddAirTestObject.lookupMember("myUsername");
+		assertEquals(member, tddAirTestObject.lookupMember("myUsername"));
 	}
 	
 	@Test
 	public void memberShouldHaveRedStatus() {
 		tddAirTestObject.registerMember("redStatusBehavior");
-		assertEquals("RED", tddAirTestObject.getMemberStatus("redStatusBehavior"));
+		assertEquals(Status.RED, tddAirTestObject.getMemberStatus("redStatusBehavior"));
 	}
 	
 	@Test

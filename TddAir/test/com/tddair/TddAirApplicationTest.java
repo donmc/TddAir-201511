@@ -69,5 +69,18 @@ public class TddAirApplicationTest {
 	public void testMemberCreationAlreadyExists() {
 		airApp.registerMember("teamb");
 	}
+	@Test
+	public void checkMemberStatusWhenReaches25000Miles() {
+		airApp.addMiles("teamb", 25000);
+		assertEquals(Status.GREEN, member.getStatus());
+	}
+	public void checkMemberStatusWhenReaches74999Miles() {
+		airApp.addMiles("teamb", 74999);
+		assertEquals(Status.BLUE, member.getStatus());
+	}
+	public void checkMemberStatusWhenReaches75000Miles() {
+		airApp.addMiles("teamb", 75000);
+		assertEquals(Status.GOLDEN, member.getStatus());
+	}
 }
 

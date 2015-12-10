@@ -47,15 +47,15 @@ public class TddAirApplication {
 	{
 		int ytdMiles = member.getYtdMiles();
 		
-		if(ytdMiles < 25001)
+		if(ytdMiles < 25000)
 		{
 			member.setStatus(Status.RED);
 		}
-		else if(ytdMiles < 50001)
+		else if(ytdMiles < 50000)
 		{
 			member.setStatus(Status.GREEN);
 		}
-		else if(ytdMiles < 75001)
+		else if(ytdMiles < 75000)
 		{
 			member.setStatus(Status.BLUE);
 		}

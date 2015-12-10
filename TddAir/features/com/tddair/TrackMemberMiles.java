@@ -16,7 +16,7 @@ public class TrackMemberMiles {
 	    // Write code here that turns the phrase above into concrete actions
 		member = app.registerMember("testmember");
 		app.addMiles(member.getUsername(), ytdMiles);
-		Assert.assertEquals(20000, member.getYtdMiles());
+		Assert.assertEquals(ytdMiles, member.getYtdMiles());
 		Assert.assertEquals(status, member.getStatus().toString());
 	}
 
@@ -25,13 +25,13 @@ public class TrackMemberMiles {
 	    // Write code here that turns the phrase above into concrete actions
 	    int ytdMiles = member.getYtdMiles();
 	    app.addMiles(member.getUsername(), addedMiles);
-	    Assert.assertEquals(25000, member.getYtdMiles());
+	    Assert.assertEquals(ytdMiles+addedMiles, member.getYtdMiles());
 	}
 
 	@Then("^member status should be upgraded to \"([^\"]*)\"$")
 	public void member_status_should_be_upgraded_to(String statusUpgrade) throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
-	    Assert.assertEquals(Status.RED, member.getStatus());
+	    Assert.assertEquals(statusUpgrade, member.getStatus().toString());
 	}
 
 	@Then("^member new mile balance should be \"([^\"]*)\"$")

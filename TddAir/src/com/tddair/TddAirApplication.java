@@ -42,4 +42,12 @@ public class TddAirApplication {
 		member.addMiles(l);
 	}
 
+	public void upgradeByMiles(Member member, int numberOfUpgrades) throws UpgradeException{
+			member.purchaseUpgradeByMiles(numberOfUpgrades);
+	}
+
+	public void upgradeByPayment(Member member, int numberOfUpgrades, String creditCard) {
+		member.purchaseUpgradeByPayment(numberOfUpgrades, creditCard);
+	}
+
 }

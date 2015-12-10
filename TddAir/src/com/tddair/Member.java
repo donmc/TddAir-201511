@@ -22,12 +22,28 @@ public class Member {
 	public Status getStatus() {
 		return status;
 	}
+	
+	public void setStatus(Status status) {
+		this.status = status;
+	}
 
 	public int getBalance() {
 		return balance;
 	}
 	
+	public void setBalance(int balance) {
+		this.balance = balance;
+	}
+	
 	public int getYtdMiles() {
 		return ytdMiles;
+	}
+	
+	public void setYtdMiles(int ytdMiles) {
+		this.ytdMiles = ytdMiles;
+	}
+	
+	public void updateStatus() {
+		this.status = Status.GREEN;
 	}
 }

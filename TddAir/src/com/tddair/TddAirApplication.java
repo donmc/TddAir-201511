@@ -26,5 +26,11 @@ public class TddAirApplication {
   public int getMemberYtdMiles(String username) {
 	  return memberList.get(username).getYtdMiles();
   }
+  
+  public void logFlight(String username, int milesFlown) {
+	  lookupMember(username).setYtdMiles(lookupMember(username).getYtdMiles() + milesFlown);
+	  lookupMember(username).setBalance(lookupMember(username).getBalance() + milesFlown);
+	  lookupMember(username).updateStatus();
+  }
  
 }

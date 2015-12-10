@@ -44,6 +44,14 @@ public class Member {
 	}
 	
 	public void updateStatus() {
-		this.status = Status.GREEN;
+		if((balance>0) & (balance<=25000)) {
+		this.status = Status.RED;
+		}
+		else if ((balance>25000)& (balance<=50000)){
+			this.status = Status.GREEN;
+		}
+		else if ((balance>50000)& (balance<=75000)){
+			this.status = Status.GOLD;
+		}
 	}
 }

@@ -74,13 +74,37 @@ public class TddAirApplicationTest {
 		airApp.addMiles("teamb", 25000);
 		assertEquals(Status.GREEN, member.getStatus());
 	}
+	@Test
 	public void checkMemberStatusWhenReaches74999Miles() {
 		airApp.addMiles("teamb", 74999);
 		assertEquals(Status.BLUE, member.getStatus());
 	}
+	@Test
 	public void checkMemberStatusWhenReaches75000Miles() {
 		airApp.addMiles("teamb", 75000);
 		assertEquals(Status.GOLDEN, member.getStatus());
 	}
+	@Test
+	public void purchasingSeatUpgradeWithMiles() {
+		member.setBalanceMiles(25000);
+		member.setYtdMiles(75000);
+		airApp.purchaseUpgradeWithMiles(member);
+		assertEquals(1, member.getUpgrade());
+	}
+	@Test(expected=RuntimeException.class)
+	public void errorExpectedNotEnoughMemberBalanceMiles() {
+		member.setBalanceMiles(4000);
+		member.setYtdMiles(25000);
+		airApp.purchaseUpgradeWithMiles(member);
+	}
+	
+	@Test
+	public void testPurchaseUpgradeWithDollars()
+	{
+		member.setBalanceAccount(100.00);
+		airApp.purchaseUpgradeWithDollars(member);
+		assertEquals(1, member.getUpgrade());
+	}
+	
 }
 

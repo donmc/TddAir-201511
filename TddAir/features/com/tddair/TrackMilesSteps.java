@@ -16,6 +16,7 @@ public class TrackMilesSteps {
 	    member = app.lookupMember("testMember");
 	    member.setStatus(status);
 	    member.setYtdMiles(ytdMiles);
+	    member.setBalance(ytdMiles+10000);
 	}
 
 	@When("^they fly \"([^\"]*)\" miles$")
@@ -24,17 +25,17 @@ public class TrackMilesSteps {
 	}
 
 	@Then("^that member should have \"([^\"]*)\" status$")
-	public void that_member_should_have_status(String status) throws Throwable {
+	public void that_member_should_have_status(Status status) throws Throwable {
 	    Assert.assertEquals(status, member.getStatus());
 	}
 
 	@Then("^that member should have \"([^\"]*)\" ytd miles$")
-	public void that_member_should_have_ytd_miles(String ytdMiles) throws Throwable {
+	public void that_member_should_have_ytd_miles(int ytdMiles) throws Throwable {
 		Assert.assertEquals(ytdMiles, member.getYtdMiles());
 	}
 
 	@Then("^that member should have \"([^\"]*)\" balance miles$")
-	public void that_member_should_have_balance_miles(String balanceMiles) throws Throwable {
+	public void that_member_should_have_balance_miles(int balanceMiles) throws Throwable {
 		Assert.assertEquals(balanceMiles, member.getBalance());
 	}
 

@@ -8,6 +8,8 @@ public class Member {
 	private Status status;
 	private int upgradeCount;
 	
+	private CreditAuthorizationService cas;
+	
 	Member(String username) {
 		this.username = username;
 		this.ytdMiles = 0;
@@ -65,6 +67,16 @@ public class Member {
 
 	public int getSeatUpgradeCount() {
 		return this.upgradeCount;
+	}
+
+	public void setCas(CreditAuthorizationService cas) {
+		this.cas = cas;		
+	}
+
+	public void purchaseSeatUpgradeWithCreditCard(int quantity, String ccNum) {
+		if (cas.authorize(status.getUpgradeCostDollars() * quantity, ccNum)) {
+			this.upgradeCount += quantity;
+		}
 	}
 
 }

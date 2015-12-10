@@ -106,5 +106,12 @@ public class TddAirApplicationTest {
 		assertEquals(1, member.getUpgrade());
 	}
 	
+	@Test(expected=RuntimeException.class)
+	public void errorExpectedNotEnoughMemberBalanceDollars() {
+		member.setBalanceAccount(40);
+		member.setYtdMiles(25000);
+		airApp.purchaseUpgradeWithDollars(member);
+	}
+	
 }
 

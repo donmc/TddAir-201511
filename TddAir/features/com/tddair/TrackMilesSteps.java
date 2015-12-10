@@ -1,76 +1,41 @@
 package com.tddair;
 
+import junit.framework.Assert;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class TrackMilesSteps {
+	private TddAirApplication app = new TddAirApplication();
+	private Member member;
 	
-	@Given("^Red Member$")
-	public void red_Member() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	@Given("^a \"([^\"]*)\" member with \"([^\"]*)\" ytd miles$")
+	public void a_member_with_ytd_miles(Status status, int ytdMiles) throws Throwable {
+	    app.registerMember("testMember");
+	    member = app.lookupMember("testMember");
+	    member.setStatus(status);
+	    member.setYtdMiles(ytdMiles);
 	}
 
-	@Given("^(\\d+) ytd miles$")
-	public void ytd_miles(int arg1) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	@When("^they fly \"([^\"]*)\" miles$")
+	public void they_fly_miles(int milesFlown) throws Throwable {
+	    app.logFlight(member.getUsername(), milesFlown);
 	}
 
-	@Given("^(\\d+) miles balance$")
-	public void miles_balance(int arg1) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	@Then("^that member should have \"([^\"]*)\" status$")
+	public void that_member_should_have_status(String status) throws Throwable {
+	    Assert.assertEquals(status, member.getStatus());
 	}
 
-	@When("^they complete a flight with (\\d+) miles$")
-	public void they_complete_a_flight_with_miles(int arg1) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	@Then("^that member should have \"([^\"]*)\" ytd miles$")
+	public void that_member_should_have_ytd_miles(String ytdMiles) throws Throwable {
+		Assert.assertEquals(ytdMiles, member.getYtdMiles());
 	}
 
-	@Then("^status should update to Green$")
-	public void status_should_update_to_Green() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
-	}
-
-	@Then("^ytd miles should update to (\\d+)$")
-	public void ytd_miles_should_update_to(int arg1) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
-	}
-
-	@Then("^miles balance should update to (\\d+)$")
-	public void miles_balance_should_update_to(int arg1) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
-	}
-
-	@Given("^Green member$")
-	public void green_member() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
-	}
-
-	@Then("^status should update to Blue$")
-	public void status_should_update_to_Blue() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
-	}
-
-	@Given("^Blue member$")
-	public void blue_member() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
-	}
-
-	@Then("^status should update to Gold$")
-	public void status_should_update_to_Gold() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	@Then("^that member should have \"([^\"]*)\" balance miles$")
+	public void that_member_should_have_balance_miles(String balanceMiles) throws Throwable {
+		Assert.assertEquals(balanceMiles, member.getBalance());
 	}
 
 }

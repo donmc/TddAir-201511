@@ -7,10 +7,14 @@ import cucumber.api.java.en.When;
 
 public class RegisterMemberSteps {
 	
-	private TddAirApplication tddApp = new TddAirApplication();
+	private TddAirApplication tddApp;
 	private Member foundMember = null;
 	private String errorMessage = null;
 
+	public RegisterMemberSteps() {
+		tddApp = TddAirSingleton.getTddAirAplication();
+	}
+	
 	@When("^registering a new member with username \"(.+)\"$")
 	public void registering_a_new_member_with_username(String username)
 			throws Throwable {
@@ -29,25 +33,27 @@ public class RegisterMemberSteps {
 		assertEquals("donmc", foundMember.getUsername());
 	}
 
-	@Then("^that member should have \"([^\"]*)\" status$")
-	public void that_member_should_have_status(String status) throws Throwable {
-		assertEquals(status.toLowerCase(), foundMember.getStatus().toString().toLowerCase());
+	@Then("^member \"([^\"]*)\" should have \"([^\"]*)\" status$")
+	public void that_member_should_have_status(String userName, String status) throws Throwable {
+		Member aMember = tddApp.lookupMember(userName);
+		assertEquals(status.toLowerCase(), aMember.getStatus().toString().toLowerCase());
 	}
 
-	@Then("^that member should have \"(\\d+)\" balance miles$")
-	public void that_member_should_have_balance_miles(int balanceMiles)
+	@Then("^member \"([^\"]*)\" should have \"(\\d+)\" balance miles$")
+	public void that_member_should_have_balance_miles(String userName, int balanceMiles)
 			throws Throwable {
-		assertEquals(balanceMiles, foundMember.getBalanceMiles());
+		Member aMember = tddApp.lookupMember(userName);
+		assertEquals(balanceMiles, aMember.getBalanceMiles());
 	}
 
-	@Then("^that member should have \"(\\d+)\" ytd miles$")
-	public void that_member_should_have_ytd_miles(int ytdMiles) throws Throwable {
-		assertEquals(ytdMiles, foundMember.getYTDMiles());
+	@Then("^member \"([^\"]*)\" should have \"(\\d+)\" ytd miles$")
+	public void that_member_should_have_ytd_miles(String userName, int ytdMiles) throws Throwable {
+		Member aMember = tddApp.lookupMember(userName);
+		assertEquals(ytdMiles, aMember.getYtdMiles());
 	}
 	
 	@Then("^should show error message \"([^\"]*)\"$")
 	public void should_show_error_message(String message) throws Throwable {
-	  
 		assertEquals(message, errorMessage);
 	}
 }

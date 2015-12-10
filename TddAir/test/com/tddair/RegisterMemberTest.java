@@ -40,7 +40,7 @@ public class RegisterMemberTest {
 	public void registerMemberHasZeroYTDMiles(){
 		name = "donmc";
 		app.registerMember(name);
-		int miles =  app.lookupMember(name).getYTDMiles();
+		int miles =  app.lookupMember(name).getYtdMiles();
 		assertEquals(0, miles);
 	}
 	

@@ -27,4 +27,19 @@ public class Member {
 		return ytdMiles;
 	}
 
+	public void setBalance(long balanceMiles) {
+		this.balance = balanceMiles;
+	}
+
+	public void setYTDMiles(long ytdMiles) {
+		this.ytdMiles = ytdMiles;
+	}
+
+	public void addMiles(long l) {
+		this.balance += l;
+		this.ytdMiles += l;
+		
+		this.status = MemberStatus.valueOf(this.ytdMiles);
+	}
+
 }

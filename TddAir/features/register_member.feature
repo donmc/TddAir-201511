@@ -6,9 +6,9 @@ Feature: Register Member
 Scenario: Save New Members
 	When registering a new member with username "sarahmk"
 	Then lookup should find a member with username "sarahmk"
-	And new member should have "RED" status
-	And new member should have "10000" balance miles
-	And new member should have "0" ytd miles
+	And the member should be "RED" status
+	And the member should have "0" YTD miles
+	And the member should have "10000" balance miles
 
 Scenario: Duplicate Usernames
 	When registering a new member with username "stevenb"

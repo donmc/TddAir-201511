@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class RegisterMemberBehavior {
 	
-	private TddAirApplication tddApp = new TddAirApplication();
+	private TddAirApplication tddApp = TddAirApplication.newInstance();
 	private Member memberSarah;
 	private Member memberSteven;
 	

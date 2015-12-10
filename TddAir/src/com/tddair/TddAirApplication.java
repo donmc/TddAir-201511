@@ -7,9 +7,18 @@ import java.util.Map;
 public class TddAirApplication {
 
 	private Map<String, Member> members = new HashMap<String, Member>();
+	private static TddAirApplication tddApp = new TddAirApplication();
 
-	public TddAirApplication() {
+	private TddAirApplication() {
 		
+	}
+	
+	public static TddAirApplication getInstance() {
+		return tddApp;
+	}
+	
+	public static TddAirApplication newInstance() {
+		return new TddAirApplication();
 	}
 
 	public void registerMember(String username) {
@@ -25,6 +34,12 @@ public class TddAirApplication {
 		}
 		
 		return member;
+	}
+
+	public void memberTakesFlight(String username, long l) throws MemberException {
+		Member member = lookUpMember(username);
+		
+		member.addMiles(l);
 	}
 
 }
